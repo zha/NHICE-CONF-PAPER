@@ -1,11 +1,11 @@
 import pywincalc
 
 class WinProp():
-    __slot__ = ('_system_wdith', '_system_height', '_glz_out_dir', '_glz_in_dir', '_gap_dir', '_overallSHGC', '_overallU')
+    __slot__ = ('_system_wdith', '_system_height',  '_overallSHGC', '_overallU')
     def __init__(self, system_width, system_height,  glz_out_dir, glz_in_dir, gap):
         self._system_width = system_width
         self._system_height = system_height
-        self._overallU, self._overallSHGC = self.overallCalc(system_width, system_height,  
+        self._overallU, self._overallSHGC = self.__overallCalc(system_width, system_height,  
                                                     glz_out_dir, glz_in_dir, self.__convert(gap))
 
     
@@ -25,9 +25,9 @@ class WinProp():
 
 
     @staticmethod
-    def overallCalc(system_width, system_height, glaze_1_dir, glaze_2_dir, gap_1):
+    def __overallCalc(system_width, system_height, glaze_1_dir, glaze_2_dir, gap_1):
         glaze_1 = pywincalc.parse_optics_file(glaze_1_dir)
-        glaze_2 = pywincalc.parse_optics_file(glaze_1_dir)
+        glaze_2 = pywincalc.parse_optics_file(glaze_2_dir)
         system_area = system_width * system_height
 
         frame_wdith  = 53e-3  # value taken from ASHRAE fundamentals for Aluminum with thermal break. For operable window
